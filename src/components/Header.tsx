@@ -5,7 +5,7 @@ const Header: React.FC = () => {
     return (
         <header className='flex justify-between items-center p-5 bg-gray-100 shadow-md'>
             <img src={logo} alt="logo" className='w-24'/>
-            <button className='bg-blue-500 shadow-blue-500/50 hover:shadow-md text-white'>Login</button>
+            <button className='bg-blue-600 hover:bg-blue-500 text-white'>Login</button>
         </header>
     )
 }
