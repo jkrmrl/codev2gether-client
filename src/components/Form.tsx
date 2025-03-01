@@ -1,15 +1,17 @@
 import React, { useState } from "react";
 import { useLocation } from "react-router-dom";
 import { connect } from "react-redux";
-import { login } from "../actions/authActions"; // Import login action
+import { login } from "../actions/authActions"; 
+import { register } from "../actions/registerActions"; 
 
 interface FormProps {
     login: (username: string, password: string) => void;
+    register: (name: string, username: string, password: string, confirmPassword: string) => void; // Add register prop
     loading: boolean;
     errorMessage: string | null;
 }
 
-const Form: React.FC<FormProps> = ({ login, loading, errorMessage }) => {
+const Form: React.FC<FormProps> = ({ login, register, loading, errorMessage }) => {
     const location = useLocation();
 
     const [username, setUsername] = useState("");
@@ -22,6 +24,8 @@ const Form: React.FC<FormProps> = ({ login, loading, errorMessage }) => {
 
         if (location.pathname === "/login") {
             login(username, password);
+        } else if (location.pathname === "/register") {
+            register(name, username, password, confirmPassword); 
         }
     };
 
@@ -85,7 +89,8 @@ const Form: React.FC<FormProps> = ({ login, loading, errorMessage }) => {
                 )}
                 <button
                     type="submit"
-                    className="w-full py-2 px-4 bg-blue-600 text-white font-semibold rounded-md hover:bg-blue-500"
+                    className="w-full py-2 px-4 bg-blue-600 text-white font-semibold rounded-md hover:bg-blue
+hover:bg-blue-500"
                     disabled={loading}
                 >
                     {loading ? "Loading..." : location.pathname === "/login" ? "Login" : "Register"}
@@ -97,12 +102,13 @@ const Form: React.FC<FormProps> = ({ login, loading, errorMessage }) => {
 };
 
 const mapStateToProps = (state: any) => ({
-    loading: state.auth.loading,
-    errorMessage: state.auth.errorMessage,
+    loading: state.auth.loading || state.register.errorMessage,
+    errorMessage: state.auth.errorMessage || state.register.errorMessage,
 });
 
 const mapDispatchToProps = {
-    login
+    login,
+    register,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Form);
