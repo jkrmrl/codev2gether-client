@@ -6,7 +6,8 @@ const initialState: AuthState = {
     user: null,
     token: null,
     loading: false,
-    errorMessage: null
+    errorMessage: null,
+    isAuthenticated: false
 };
 
 const registerReducer = (state = initialState, action: registerActionTypes) => {
@@ -16,6 +17,7 @@ const registerReducer = (state = initialState, action: registerActionTypes) => {
                 ...state,
                 loading: true,
                 errorMessage: null,
+                isAuthenticated: false
             }
         case registerConstants.REGISTER_SUCCESS:
             return {
@@ -24,12 +26,14 @@ const registerReducer = (state = initialState, action: registerActionTypes) => {
                 user: action.payload.user,
                 token: action.payload.token,
                 errorMessage: null,
+                isAuthenticated: true
             }
         case registerConstants.REGISTER_FAILURE:
             return {
                 ...state,
                 loading: false,
                 errorMessage: action.payload.message,
+                isAuthenticated: false
             }
         default:
             return state;

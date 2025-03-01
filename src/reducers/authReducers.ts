@@ -6,7 +6,8 @@ const initialState: AuthState = {
     user: null,
     token: null,
     loading: false,
-    errorMessage: null
+    errorMessage: null,
+    isAuthenticated: false
 };
 
 const authReducer = (state = initialState, action: authActionTypes) => {
@@ -16,6 +17,7 @@ const authReducer = (state = initialState, action: authActionTypes) => {
                 ...state,
                 loading: true,
                 errorMessage: null,
+                isAuthenticated: false
             }
         case authConstants.LOGIN_SUCCESS:
             return {
@@ -24,18 +26,21 @@ const authReducer = (state = initialState, action: authActionTypes) => {
                 user: action.payload.user,
                 token: action.payload.token,
                 errorMessage: null,
+                isAuthenticated: true
             }
         case authConstants.LOGIN_FAILURE:
             return {
                 ...state,
                 loading: false,
                 errorMessage: action.payload.message,
+                isAuthenticated: false
             }
         case authConstants.LOGOUT:
             return {
                 ...state,
                 user: null,
                 token: null,
+                isAuthenticated: false
             };
         default:
             return state;

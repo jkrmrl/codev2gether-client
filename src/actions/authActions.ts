@@ -35,3 +35,23 @@ export const login = (username: string, password: string) => {
         }
     };
 };
+
+export const autoLogin = () => {
+    return (dispatch: any) => {
+      const user = localStorage.getItem("user");
+      const token = localStorage.getItem("token");
+  
+      if (user && token) {
+        dispatch(loginSuccess(JSON.parse(user), token));
+      }
+    };
+};
+
+export const logoutUser = () => {
+    return (dispatch: any) => {
+        localStorage.removeItem("user");
+        localStorage.removeItem("token");
+
+        dispatch(logout());
+    };
+};
