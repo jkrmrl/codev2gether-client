@@ -1,6 +1,4 @@
-// import { registerConstants } from "../constants/registerConstants";
 import { registerService } from "../services/registerServices";
-// import { registerActionTypes } from "../types/registerTypes";
 import { authConstants } from "../constants/authConstants";
 import { authActionTypes } from "../types/authTypes";
 
