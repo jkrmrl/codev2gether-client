@@ -109,8 +109,8 @@ const Form: React.FC<FormProps> = ({ login, register, loading, errorMessage, isA
 };
 
 const mapStateToProps = (state: any) => ({
-  loading: state.auth.loading || state.register.errorMessage,
-  errorMessage: state.auth.errorMessage || state.register.errorMessage,
+  loading: state.auth.loading,
+  errorMessage: state.auth.errorMessage,
   isAuthenticated: state.auth.isAuthenticated
 });
 

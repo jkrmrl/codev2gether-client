@@ -42,6 +42,29 @@ const authReducer = (state = initialState, action: authActionTypes) => {
                 token: null,
                 isAuthenticated: false
             };
+        case authConstants.REGISTER_REQUEST:
+            return {
+                ...state,
+                loading: true,
+                errorMessage: null,
+                isAuthenticated: false
+            }
+        case authConstants.REGISTER_SUCCESS:
+            return {
+                ...state,
+                loading: false,
+                user: action.payload.user,
+                token: action.payload.token,
+                errorMessage: null,
+                isAuthenticated: true
+            }
+        case authConstants.REGISTER_FAILURE:
+            return {
+                ...state,
+                loading: false,
+                errorMessage: action.payload.message,
+                isAuthenticated: false
+            }
         default:
             return state;
     }

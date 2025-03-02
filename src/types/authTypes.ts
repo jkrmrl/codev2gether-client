@@ -18,4 +18,25 @@ interface logout {
     type: authConstants.LOGOUT;
 }
 
-export type authActionTypes = loginRequest | loginSuccess | loginFailure | logout;
+interface registerRequest {
+    type: authConstants.REGISTER_REQUEST;
+}
+
+interface registerSuccess {
+    type: authConstants.REGISTER_SUCCESS;
+    payload: { user: string; token: string }; 
+}
+
+interface registerFailure {
+    type: authConstants.REGISTER_FAILURE;
+    payload: { message: string };
+}
+
+export type authActionTypes = 
+loginRequest |
+loginSuccess | 
+loginFailure | 
+registerRequest | 
+registerSuccess | 
+registerFailure |
+logout;

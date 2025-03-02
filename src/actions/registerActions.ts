@@ -1,18 +1,20 @@
-import { registerConstants } from "../constants/registerConstants";
+// import { registerConstants } from "../constants/registerConstants";
 import { registerService } from "../services/registerServices";
-import { registerActionTypes } from "../types/registerTypes";
+// import { registerActionTypes } from "../types/registerTypes";
+import { authConstants } from "../constants/authConstants";
+import { authActionTypes } from "../types/authTypes";
 
-export const registerRequest = (): registerActionTypes => ({
-    type: registerConstants.REGISTER_REQUEST,
+export const registerRequest = (): authActionTypes => ({
+    type: authConstants.REGISTER_REQUEST,
 });
 
-export const registerSuccess = (user: string, token: string): registerActionTypes => ({
-    type: registerConstants.REGISTER_SUCCESS,
+export const registerSuccess = (user: string, token: string): authActionTypes => ({
+    type: authConstants.REGISTER_SUCCESS,
     payload: { user, token },
 });
 
-export const registerFailure = (message: string): registerActionTypes => ({
-    type: registerConstants.REGISTER_FAILURE,
+export const registerFailure = (message: string): authActionTypes => ({
+    type: authConstants.REGISTER_FAILURE,
     payload: { message },
 });
 
