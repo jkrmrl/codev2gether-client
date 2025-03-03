@@ -1,9 +1,11 @@
 import React, {useState} from 'react';
 import Card from './Card';
 import TabButton from './TabButton';
+import { useNavigate } from 'react-router-dom';
 
 const CardContainer: React.FC = () => {
     const [activeTab, setActiveTab] = useState('Tab 1'); 
+    const navigate = useNavigate();
 
     const handleTabClick = (tabName: string) => {
         setActiveTab(tabName);
@@ -19,7 +21,7 @@ const CardContainer: React.FC = () => {
                     </div>
                     <div
                         className={`cursor-pointer py-2 px-6 text-sm font-semibold text-center bg-blue-600 text-white w-auto rounded-md ml-auto hover:bg-blue-700`}
-                        onClick={() => setActiveTab('tab3')}
+                        onClick={() => navigate('/create-project')}
                     >
                         Add New Project
                     </div>
